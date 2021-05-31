@@ -3,225 +3,261 @@
 
 <html lang="en">
 
-<head>
-	<link rel="stylesheet" href="assets/css/style.css">
-  <link rel="shortcut icon" href="https://github.com/gmostofabd/melab-store/blob/main/Images/melab-bd_logo.jpg?raw=true" type="image/x-icon">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	
-	<script>
-    		$(function(){
-      			$('#sidebar1').load("assets/sidebar1.html");
-    		});
- 	</script>
-
-  <meta charset="utf-8">
-	<meta name="Keywords" content="Microcontroller,8051,Assembly,Programming,Code,Proteus">
-
+  <head>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="https://github.com/gmostofabd/melab-store/blob/main/Images/melab-bd_logo.jpg?raw=true" type="image/x-icon">
+  
+    <script src="https://github.com/gmostofabd/melab-store/blob/main/sharedfooter.js" type="text/javascript" defer></script>
+  
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script>
+          $(function(){
+              $('#sidebar1').load("assets/sidebar1.html");
+          });
+      </script>
+    
+        <meta charset="utf-8">
+    <meta name="Keywords" content="Microcontroller,8051,Assembly,Programming,Circuits,Codes,Proteus">
+    
     <!--Facebook Open graph Mete Tags-->
-	<meta property="og:url"                content="https://gmostofabd.github.io/8051-LED-Matrix/" />
-	<meta property="og:type"               content="article" />
-	<meta property="og:title"              content="Exp-04 : 8051 with LED Dot Matrix Display" />
-	<meta property="og:description"        content="8x8 Dot Matrix LED Display Interfacing with 8051 Microcontrollers" />
-	<meta property="og:image"              content="assets/images/LEDMATRIX_8051_Ckt.png" />
-
-
-	<title>8051 LED Matrix</title>
+    <meta property="og:url"                content="https://gmostofabd.github.io/8051-LCD/" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="Exp-05 : 8051 with LCD Display" />
+    <meta property="og:description"        content="LCD Interfacing with 8051 Microcontrollers" />
+    <meta property="og:image"              content="assets/images/LCD_8B_8051_Ckt.png" />
+  
+    <title>8051 LCD</title>
 </head>
 
 
 <body  bgcolor=white>
 
 	<div id="header_common"><img src="https://github.com/gmostofabd/melab-store/blob/main/Images/8051_Tutorial_Banner.png?raw=true" alt="common_banner"></div>
-	<div id="topic_container"><h2>Exp. 04: LED Matrix Interfacing with 8051</h2></div>
+	<div id="topic_container"><h2>Topic : LCD Interfacing with 8051 Microcontroller</h2></div>
 
 
   <table align = center width=1000 height=1000  bgcolor= white>
 	  <tr>
 
 
-
 	  <td width=800 align=center valign=top style="padding-left: 10px; padding-right: 10px;">
 		
-		<h3>Introduction:</h3>
-          <blockquote>
+		  <h3>Introduction:</h3>
+      <blockquote>
 		  <p>
-        LED Matrix module have many applications in real life, 
-        such as various types of electronic display panels.
-        Most modern LED sign boards uses various types of matrix boards with controllers. 
-        In this tutorial we are going to interface a single color 8×8 LED matrix with a 
-        Microcontroller  and display a few characters in it. LED dot matrix can be used 
-        in simple display applications where the resolution is not a big concern.
+        A Liquid Crystal Display commonly abbreviated as LCD is basically 
+        a display unit built using Liquid Crystal technology. 
+        It is an inevitable part in almost all embedded projects and this 
+        article is about interfacing a 16×2 LCD with 8051 microcontroller. 
+        Many guys find it hard to interface LCD module with the 8051 but 
+        the fact is that if you learn it properly, its a very easy job and 
+        by knowing it you can easily design embedded projects like digital 
+        voltmeter / ammeter, digital clock, home automation displays, 
+        status indicator display, digital code locks, digital 
+        speedometer/ odometer, display for music players etc etc.<br><br>
+    
+        Thoroughly going this article will make you able to display any 
+        text (including the extended characters) on any part of the 16×2 
+        display screen. In order to understand the interfacing first you 
+        have to know about the LCD modules.
 	    </p>
-          </blockquote>
+      </blockquote>
 
-        <h3>Hardware Discussion : LED Dot Matrix</h3>
+      <h3>Hardware Discussion: Liquid Crystal Display (LCD)</h3>
 	
-            <div class="box_50"><img src="assets/images/8X8_Matrix.png"/></div>
-            <div class="capt_cont">Fig: LED DOT Matrix Display</div>
+      <div class="box_70"><img src="assets/images/lcd_models.png"/></div>
+      <div class="capt_cont">Fig: Some of available LCD modules</div>
 
 
 
 
-      <h3>LED Matrix Features :</h3>
+      <h3>LCD Features :</h3>
             
       <ul>
-          <li>Available in different sizes and colors.</li>
-          <li>Robust usability. It has long life almost 50,000 hours if properly installed.</li>
-          <li>It is called solid state lighting because it is made of solid state material with no tube no filament of bulb to break.</li>
-          <li>It is environmentally friendly because it has no mercury or any other hazardous material.</li> 
-          <li>Its brightness and colours can be easily controlled.</li>
-          <li>It is more efficient because now it is capable of outputting 135 lumens/watt.</li>
-          <li>Low resolution</li>
-          <li>We can understand it in size and types, e.g. 5x7, 8x8, common anode, and common cathode type.</li>
-          <li>With low-voltage scanning, 8×8 LED Matrix LED display have advantages such as power saving, long service life, low cost, high brightness, a wide angle of view, long visual range, waterproofs and so on.</li>
-          <li>LED matrix display is device used for displaying the information on machines like computer monitor, tvset, Medical Monitors etc.</li>
-        </ul>
+          <li>Alphanumeric LCD display module, meaning can display alphabets and numbers.</li>
+          <li>16x2 LCD consists of two rows and each row can print 16 characters.</li>
+          <li>Each character is build by a 5×8 pixel box.</li>
+          <li>Can work on both 8-bit and 4-bit mode.</li>
+          <li>It can also display any custom generated characters</li>
+          <li>Available in Green and Blue Back light.</li>
+          <li>Combinations available like, 8x1, 8x2, 16x1, 16x2, 16x4, 20x4 etc.</li>
+          <li>Operating Voltage is 4.7V to 5.3V.</li>
+          <li>Current consumption is 1mA without back light.</li>
+      </ul>
+        <br>
+      <h3>LCD Basics :</h3>
+        <p>
+          16×2 LCD module is a very common type of LCD module that is used in this tutorial. The pin 
+          numbers, their name and corresponding functions are shown in the table  below.
+        </p>
 
-      <h3>LED Matrix Basics</h3>
-
-        <div class="box_50"><img src="assets/images/sr_3.jpg" alt="LCD mdules"></div>
-        <div class="capt_cont">Fig: LED Matrix Pin Out</div>
-
-        <blockquote>
-          <p>
-            An LED dot matrix display consists of a matrix of  LED’s arranged in a rectangular 
-            configuration. An 8×8 matrix consists of 64 dots or pixels. There is a LED for each 
-            pixel and these LEDs are connected to total of 16 pins. It can be used to display 
-            almost anything by switching ON /OFF  a desired configuration of LED’s. You can 
-            identify the pin out and circuit diagram of it using the following figure.
-
-            <br><br>The dot matrix display has 64 LEDs and evenly grouped into 8 columns and 8 rows. 
-            Any individual LED or a group of LEDs in the matrix can be activated by switching the 
-            required number of rows and columns. For example, in the above figure if  Row1 is made 
-            high and Column1 is made low, the top left LED (address R1C1) will glow.
-          </p>
-          </blockquote>
-  
-
-        <h3>How LED Matrix Works ?</h3>
-
-        <div class="box_80"><img src="assets/images/stepbystep.png" alt="LCD mdules"></div>
-        <div class="capt_cont">Fig: Step by Step LED Matrix Drive</div>
-
-        <blockquote>
-          <p>
-            As a demonstration, lets see how we can display letter “A” using the display. 
-            The tables given below shows the logic levels at each pin  for displaying A. In 
-            the above diagram you can see that only one LED in a row will be ON at a time 
-            but any number of  LEDs in a column can be ON at a time.  That means the 
-            microcontroller’s port pin can directly drive a row but it requires  additional 
-            circuit for driving the column lines.
-          </p>
-          </blockquote>
+        <div class="box_80">
+          <img src="assets/images/LCD_Pinout.png" alt="LCD mdules">
+        </div>
+        <div class="capt_cont">
+          Fig: LCD Pinout with description
+        </div>
 
 
 
-        <h3>Circuit Diagram :</h3>
-        <div class="box_90"><img src="assets/images/LEDMATRIX_8051_Ckt.png" alt="ckt_diagram" width="600" height="350"></div>
-        <div class="capt_cont">Fig: Interfacing LED Matrix with 8051</div>
-
- 
-        <h3>Circuit Discussion :</h3>
-
-        <blockquote>
-            <p>First setting up the matrix circuit, as per the connection given in the 
-              picture diagram. The circuit is very simple one if you clearly understood 
-              the previous lessons.
-            </p>
-            </blockquote>
 
 
-        <h3>Assembly Program : <a href="https://github.com/gmostofabd/8051-7Segment/blob/main/codes/7seg_1d_8051.asm">LEDMATRIX_8051.asm</a></h3>
-        <div class="prog_cont"><embed type="text/html" src="codes/LEDMATRIX_8051.asm"  width="500" height="500"></div>
-
-        <h3>Code Discussion:</h3>
-            <blockquote>
-            <p>
-            </p>
-            </blockquote>
-
-
-
-        <h3>Post Run Discussion:  Shift Registers 74HC595</h3>
+        <h3>How it works?</h3>
         <blockquote>
         <p>
-          At sometime or another you may run out of pins on your Microcontroller and need to extend it. 
-          The common solution for this is to use a <strong>Shift Register</strong> 
-          And the 74HC595 shift register (nicknamed ‘595’) is one of the most famous among all. 
-          In this lesson you will learn how to expand your I/O pins using a shift register. 
+          Now, we know that each character has (5×8=40) 40 Pixels and for 32 Characters we will have 
+          (32×40) 1280 Pixels. Further, the LCD should also be instructed about the Position of the 
+          Pixels. Hence it will be a hectic task to handle everything with the help of MCU, hence an 
+          Interface IC like HD44780 is used, which is mounted on the backside of the LCD Module itself. 
+          The function of this IC is to get the Commands and Data from the MCU and process them to 
+          display meaningful information onto our LCD Screen.<br><br>
+        
+          A 16×2 LCD has two registers like data register and command register. TheRS(register select) 
+          is mainly used to change from one register to another. Whenthe register set is ‘0’, then it 
+          is known ascommand register. Similarly, when theregister set is ‘1’, then it is known as data 
+          register.
+          
+          <br><br>The main function of the command register is to store the instructions of command 
+          which are given to the display. So that predefined tasks can be performed such as clearing 
+          the display, initializing, set the cursor place, and display control.<br><br>
+          
+          The main function of the data register is to store the information which is tobe exhibited 
+          on the LCD screen.  Here, the ASCII value of the character is theinformation. Whenever we 
+          send the information to LCD, it transmits to the dataregister, and then the process will 
+          be starting there.
         </p>
         </blockquote>
 
-        <div class="box_90"><img src="assets/images/74hc595-pin-out-and-logic-diagram.png" alt="ckt_diagram" width="600" height="350"></div>
-        <div class="capt_cont">Fig: Pin out with functional diagram of 74HC595</div>
 
+        Now we can start for the test of a LCD. To do that we need to code for thecommon steps:
 
-        <h3>74HC595 Features :</h3>
-        <ul>
-          <li>High speed CMOS device. 8-bit, Serial In – Parallel out Shift register.</li>
-          <li>3-state output (LOW, HIGH and OFF)</li>
-          <li>Operating Voltage: 2V to 6V.</li>
-          <li>Power Consumption: 80uA.</li>
-          <li>Output source/sink current: 35mA.</li>
-          <li>Output Voltage is equal to Operating voltage.</li>
-          <li>Minimum high-level Input Voltage: 3.15V @(Vcc=4.5V)</li>
-          <li>Maximum low-level Input Voltage: 1.35V @(Vcc=4.5V)</li>
-        </ul>
+        <h3>Programming LCD to Microcontroller :</h3>
+        <p>Coming to the programming you should follow these steps:</p>
+         <ul>
+          <li><strong>STEP1</strong>: Initialization of LCD</li>
+          <li><strong>STEP2</strong>: Sending command to LCD.</li>
+          <li><strong>STEP3</strong>: Writing the data to LCD.</li>
+          </ul>
 
-        <h3>74HC595 Pin Description with functional diagram :</h3>
-        <div class="box_ckt_diag"><img src="assets/images/595_pin_func.png" alt="ckt_diagram" "></div>
-        <div class="capt_cont">Fig: Pin Description functional diagram of 74HC595</div>
-
-        <h3>How 74HC595 Works?</h3>
-        <p>The 595 can be controlled using only three pins of 74HC595:</p>
-
-        <ul>
-          <li>Clock Pin (pin 11)</li>
-          <li>Latch Pin (pin 12)</li>
-          <li>Data Pin (pin 14)</li>
-        </ul>
-
-        <p>The 595 has two main registers as shown in the figure:</p>
-
-        <ul>
-          <li>The shift register.</li>
-          <li>The output register (or data latch or sometimes called a register latch).</li>
-        </ul>
-
-        <p>Whenever we apply a clock pulse to a 595, two things happen:</p>
-
-
-        <ul>
-          <li>The bits in the Shift Register move one step to the left. For example, Bit 7 accepts 
-            the value that was previously in bit 6, bit 6 gets the value of bit 5 etc.</li>
-          <li>Bit 0 in the Shift Register accepts the current value on DATA pin. At the rising 
-            edge of the pulse, if the data pin is high, then a 1 gets pushed into the shift 
-            register. Otherwise, it is a 0.</li>
-        </ul>
-
-        <p>
-          The 74HC595 is arranged this way, so, when you update the shift register data using 
-          the serial clock (SRCLK) and serial data (SER) inputs, the outputs from the chip do 
-          not change .i.e. you can feed data into the shift register and it will ripple 
-          through without affecting the output pin state. Only when the output data clock 
-          is strobed (latch clock or register clock - RCLK) will the data be transferred 
-          from the shift register to the output pins.
+        <h3>LCD initialization :</h3>
+        <p>To initialize LCD to the 8051 the following instruction and commands are to 
+            beembed in to the functions
         </p>
+          <ul>
+            <li>Send <strong>38H</strong> to the 8 bit data line for initialization</li>
+            <li>Send <strong>0FH</strong> for making LCD ON, cursor ON and cursor blinking ON.</li>
+            <li>Send <strong>06H</strong> for increment cursor position.</li>
+            <li>Send <strong>01H</strong> for clearing the display and return the cursor.</li>
+          </ul>
 
+
+
+          <h3>Sending data to the LCD :</h3>
+          <blockquote>
+          <p>The steps for sending data to the LCD module is given below. I have 
+              already said that the LCD module has pins namely RS, R/W and E. 
+              It is the logic state of these pins that make the module to 
+              determine whether a given data input is a command or data to be displayed.
+          </p>
+          </blockquote>
+
+
+            <ul>
+              <li>Make R/W low.</li>
+              <li>Make RS=0 if data byte is a command and make RS=1 if the data byte is adata to be displayed.</li>
+              <li>Place data byte on the data register.</li>
+              <li>Pulse E from high to low.</li>
+              <li>Repeat above steps for sending another data.</li>
+            </ul>
+
+
+        <h3>Circuit Diagram : 8 bit LCD Interfacing to 8051.</h3>
+
+        <div class="box_ckt_diag"><img src="assets/images/LCD_8B_8051_Ckt.png"/></div>
+        <div class="capt_cont">Fig: A Single Digit Seven Segment Display Circuit.</div>
+
+
+
+        <h3>Circuit Discussion :</h3>
+
+        <blockquote>
+        <p>
+          The circuit diagram given above shows how to interface a 16×2 LCD module with AT89S1 
+          microcontroller. Capacitor C3, resistor R3 and push button switchS1 forms the reset 
+          circuitry. Ceramic capacitors C1,C2 and crystal X1 is related tothe clock circuitry 
+          which produces the system clock frequency. P1.0 to P1.7 pins ofthe microcontroller 
+          is connected to the DB0 to DB7 pins of the module respectively and through this route 
+          the data goes to the LCD module. P3.3, P3.4 and P3.5 are connected to the E, R/W, RS 
+          pins of the microcontroller and through this route the control signals are transferred 
+          to the LCD module. Resistor R1 limits the current through the back light LED and so 
+          do the back light intensity. POT R2 is used for adjusting the contrast of the display. 
+          Program for interfacing LCD to 8051 micro-controller is shown below.
+        </p>
+        </blockquote>
+
+
+        <h3>Assembly Program : <a href="https://github.com/gmostofabd/8051-7Segment/blob/main/codes/7seg_1d_8051.asm">lcd_8bit_8051.asm</a></h3>
+        <div class="prog_cont">
+            <embed type="text/html" src="codes/lcd_8bit.asm"  width="500" height="500">
+        </div>
+
+        <h3>Code Discussion:</h3>
+
+        <h3>Post Run Discussion : LCD 4 bit mode interfacing</h3>
+        <blockquote>
+        <p>
+          The microcontroller like 8051 has only limited number of GPIO pins. So to design complex 
+          projects we need sufficient number of I/O pins . An LCD module can be interfaced with a 
+          microcontroller either in 8 bit mode (as seen above) or in 4 bit mode. 8 bit mode is the 
+          conventional mode which uses 8 data lines and RS, R/W,E pins for functioning. However 4 
+          bit mode uses only 4 data lines along with thecontrol pins. This will saves the number 
+          of GPIO pins needed for other purpose. Ifyou already know how to interface LCD with 
+          microcontroller in 8 bit mode then it is not difficult to interface LCD in 4 bit mode.
+
+          <br><br>In 4 bit interfacing mode that we only use 4 data lines [DB4-DB7] of LCD. 
+          As we are going to use only 4 data lines so we need to send data in group of 4 
+          bits( called nibble). The Higher nibble is send first and then lower nibble is send. 
+          In this program i use two memory location to store my upper and lower nibble after 
+          separating a 8 bit data.
+        </p>
+        </blockquote>
 
         <h3>Circuit Diagram :</h3>
-        <div class="box_ckt_diag"><img src="assets/images/74HC595_8051_Ckt.png" alt="ckt_diagram"></div>
-        <div class="capt_cont">Fig: Shift Register 74HC595 Interfacing to 8051.</div>
+              
+        <div class="box_ckt_diag">
+          <img src="assets/images/LCD_4B_8051_Ckt.png" alt="ckt_diagram" width="600" height="350">
+        </div>
 
-        <h3>Assembly Program : <a href="https://github.com/gmostofabd/8051-7Segment/blob/main/codes/7seg_1d_8051.asm">74hc595_LED_8051.asm</a></h3>
-        <div class="prog_cont"><embed type="text/html" src="codes/LEDMATRIX_8051.asm"  width="500" height="500"></div>
+        <div class="capt_cont">
+          Fig: LCD interfacing (4 bit mode) with 8051
+        </div>
 
-      </td>
+
+        <h3>Circuit Discussion :</h3>
+        <blockquote>
+        <p>
+          As shown in the circuit diagram, port 0 of the controller is used for interfacingit with 
+          LCD module. In 4 bit mode only 4 linesD4-D7, along with RS, R/W andE pins are used. 
+          This will save us 4 pins of our controller which we might employ itfor other purpose. Here 
+          we only need to write to the LCD module. So the R/W pincan be ground it as shown in the schematic 
+          diagram. In this way the total numberof pins can be reduced to 6. In 4 Bit mode the data bytes are 
+          split into two fourbits and are transferred in the form of a nibble. The data transmission to a 
+          LCD isperformed by assigning logic states to the control pins RS and E. The reset circuit,oscillator 
+          circuit and power supply need to be provided for the proper working ofthe circuit.
+        </p>
+        </blockquote>
+
+
+        <h3>Assembly Program : lcd_4bit_8051.asm</h3>
+        <div class="prog_cont">
+          <embed type="text/html" src="codes/lcd_4bit.asm"  width="500" height="500">
+        </div>
+
+    </td>
 
 	  <td valign=top>
 		
-
 
       <div class="vdo_lst_cont">
           <h3>Lesson Video</h3>
@@ -230,7 +266,10 @@
             </iframe>
       </div>
 
-      <div id="sidebar1"></div>
+        <div id="sidebar1"></div>
+
+
+
     </td>
 
 
@@ -240,24 +279,25 @@
 
   <table width=1000 height=50 align= center border="1">
 	  <tr>
-			<td>Prev topic: 7 Segment Display Interfacing with 8051</td>
-			<td>Next topic: LCD interfacing with 8051</td>
+			<td>Prev topic: LED Matrix Interfacing with 8051</td>
+			<td>Next topic: Analog Reading with 8051</td>
 		</tr>
   </table>
 
 	<div id="footer_common">
     <div class="prj_footer_cell">
-      <font face="Verdana, Arial, Helvetica, sans-serif" color="#452063" size="4" ><strong>Top Tutorial sites </strong></font>
-      <ul>
-        <li><a href="http://www.melab-bd.com/home.html"><strong>Circuit Today</strong></a></li>
-        <li><a href="http://www.melab-bd.com/about.html"><strong>Radio Electronics</strong></a></li>
-        <li><a href="http://www.melab-bd.com/project.html"><strong>8051 Projects</strong></a></li>
-        <li><a href="http://www.melab-bd.com/trainings.html"><strong>101 Components</strong></a></li>
-      </ul>
-
+      <font face="Verdana, Arial, Helvetica, sans-serif" color="#0000ff" size="2" ><strong>Top Tutorial sites </strong></font>
+      <div id="navcontainer">
+        <ul >
+          <li id="active"><a href="http://www.melab-bd.com/home.html"><strong>Circuit Today</strong></a></li>
+          <li><a href="http://www.melab-bd.com/about.html"><strong>Radio Electronics</strong></a></li>
+          <li><a href="http://www.melab-bd.com/product.html"><strong>MikroE</strong></a></li>
+          <li><a href="http://www.melab-bd.com/project.html"><strong>8051 Projects</strong></a></li>
+          <li><a href="http://www.melab-bd.com/trainings.html"><strong>101 Components</strong></a></li>
+         </ul>
+      </div>	
     </div>
   </div>
-
     
 
 </body>
